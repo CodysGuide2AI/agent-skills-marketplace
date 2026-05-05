@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Skills Marketplace - Categories</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f9fafb;
+        }
+        h1 {
+            color: #111827;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .category-card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: #3b82f6;
+        }
+        .category-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .category-description {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        #loading {
+            text-align: center;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Agent Skills Marketplace</h1>
+    
+    <div id="loading">Loading categories...</div>
+    <div id="categories-container" class="categories-grid"></div>
+
+    <script>
+        async function fetchCategories() {
+            try {
+                const response = await fetch('./data/categories.json');
+                const categories = await response.json();
+                
+                const container = document.getElementById('categories-container');
+                const loading = document.getElementById('loading');
+                
+                loading.style.display = 'none';
+                
+                categories.forEach(cat => {
+                    const card = document.createElement('div');
+                    card.className = 'category-card';
+                    card.onclick = () => alert(`Loading filtered listings for: ${cat.name}`);
+                    
+                    card.innerHTML = `
+                        <h2 class="category-name">${cat.name}</h2>
+                        <p class="category-description">${cat.description}</p>
+                    `;
+                    
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+                document.getElementById('loading').innerText = 'Failed to load categories.';
+            }
+        }
+
+        // Initialize
+        fetchCategories();
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "mcp-servers",
+    "name": "MCP Servers",
+    "description": "Model Context Protocol servers providing structured context and tools to agents."
+  },
+  {
+    "id": "tool-definitions",
+    "name": "Tool Definitions",
+    "description": "Schemas and specifications for API endpoints and function calls."
+  },
+  {
+    "id": "prompt-templates",
+    "name": "Prompt Templates",
+    "description": "Pre-crafted prompts and system messages for specific agent tasks."
+  },
+  {
+    "id": "api-integrations",
+    "name": "API Integrations",
+    "description": "Code and configurations for connecting to external services and APIs."
+  },
+  {
+    "id": "data-connectors",
+    "name": "Data Connectors",
+    "description": "Tools for ingesting, querying, and managing external data sources."
+  },
+  {
+    "id": "utilities",
+    "name": "Utilities",
+    "description": "General purpose utility scripts and helper functions."
+  }
+]
